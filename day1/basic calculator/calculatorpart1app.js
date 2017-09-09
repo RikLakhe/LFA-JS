@@ -1,0 +1,10 @@
+"use strict";
+exports.__esModule = true;
+var calculatorpart1_1 = require("./calculatorpart1");
+var a = 32, b = 53;
+var calc = new calculatorpart1_1.Calculator();
+var g = calc.add(a, b);
+var y = calc.sub(a, b);
+var x = calc.mult(a, b);
+var z = calc.div(a, b);
+console.log("add=" + g + "sub=" + y + "mult=" + x + "div=" + z);

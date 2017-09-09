@@ -1,0 +1,15 @@
+"use strict";
+exports.__esModule = true;
+var MathFactory_1 = require("./commands/MathFactory");
+var cmdadd = MathFactory_1.MathFactory.get("+");
+var cmdsub = MathFactory_1.MathFactory.get("-");
+var cmdmult = MathFactory_1.MathFactory.get("*");
+var cmddiv = MathFactory_1.MathFactory.get("/");
+var a = cmdadd.calculate(4, 6);
+var b = cmdsub.calculate(4, 6);
+var c = cmdmult.calculate(4, 6);
+var d = cmddiv.calculate(4, 6);
+console.log("add=" + a);
+console.log("sub=" + b);
+console.log("mult=" + c);
+console.log("div=" + d);
