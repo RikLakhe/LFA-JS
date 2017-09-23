@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue courses</title>
+    <script src="js/vue/vue.min.js"></script>
+    <script src="js/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <welcome></welcome>
+
+        <a href="javascript:void(0)" v-on:click="showDialog()">Add Course</a>
+
+        <div>
+            <table border="1">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>fees</th>
+                </tr>
+                <tr v-for="c in courses">
+                    <td>{{c.id}}</td>
+                    <td>{{c.name|upper}}</td>
+                    <td>{{c.fees}}</td>
+                </tr>
+            </table>
+        </div>
+        <div id="dialog" style="display:none">
+            <h1>Courses</h1>
+            <form id="course-form">
+                <div>
+                    <label for="">Course Name</label>
+                    <input type="text" name="course_name" id="course_name" v-model="course.name" required/>
+                </div>
+                <div>
+                    <label for="">Course Fee</label>
+                    <input type="text" name="course_fee" id="course_fee" v-model="course.fees" required/>
+                </div>
+
+
+                <button type="submit" id="save-btn" v-on:click="saveCourse()">Save </button>
+
+                <a href="javascript:void(0)" v-on:click="hideDialog()">Cancel</a>
+
+            </form>
+        </div>
+    </div>
+    <script>
+        Vue.component("welcome", {
+            template: '<h1>Welcome form {{name}}</h1>',
+            data: function() {
+                return {
+                    name: "test"
+                }
+            }
+        })
+
+        new Vue({
+            el: "#root",
+            data: {
+                courses: [],
+                course: {
+                    id: 0,
+                    name: '',
+                    fees: 0
+                }
+            },
+            methods: {
+                showDialog: function() {
+                    $("#dialog").slideDown(1000);
+                },
+                hideDialog: function() {
+                    $("#dialog").slideUp(1000);
+                },
+                saveCourse: function() {
+                    this.courses.push(this.course);
+                    this.course = {
+                        id: 0,
+                        name: '',
+                        fees: 0
+                    }
+                    $("#dialog").slideUp(1000);
+                }
+            },
+            filters: {
+                upper: function(value) {
+                    return value.toUpperCase();
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>
